@@ -3,14 +3,12 @@ import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import ClientCatalog from './pages/ClientCatalog';
 import ProductDetail from './pages/ProductDetail'; 
+import CategoryView from './pages/CategoryView'; // Importa el nuevo componente
 
 function App() {
-  // 'vista' guarda qué pantalla estamos mostrando
   const [vista, setVista] = useState('inicio');
-  // Nuevo estado para saber qué ID de producto estamos viendo
   const [selectedProductId, setSelectedProductId] = useState(null);
 
-  // Función para manejar la navegación a detalles
   const handleViewDetails = (id) => {
     setSelectedProductId(id);
     setVista('detalles');
@@ -18,7 +16,7 @@ function App() {
 
   return (
     <>
-      {/* Condicionales para mostrar el componente correcto */}
+      {/* Catálogo Principal */}
       {vista === 'inicio' && (
         <ClientCatalog 
           cambiarVista={setVista} 
@@ -26,8 +24,20 @@ function App() {
         />
       )}
       
-      {vista === 'login' && <Login />}
+      {/* Vista de Categoría Decorativas */}
+      {vista === 'decorativas' && (
+        <CategoryView 
+          categoria="Lámparas Decorativas" 
+          productos={[
+            { id: 1, nombre: 'Lámpara Colgante Vintage', precio: '$ 85.000', img: '/colgante.png' },
+            { id: 2, nombre: 'Lámpara de Mesa Cristal', precio: '$ 120.000', img: '/lamparastecho.png' }
+          ]}
+          verDetalles={handleViewDetails}
+        />
+      )}
       
+      {/* Otras vistas */}
+      {vista === 'login' && <Login />}
       {vista === 'dashboard' && <AdminDashboard />}
       
       {vista === 'detalles' && (

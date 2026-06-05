@@ -18,7 +18,7 @@ const ClientCatalog = ({ cambiarVista, verDetalles }) => {
       <Navbar cambiarVista={cambiarVista} />
 
       {/* 2. Banner Principal */}
-      <section className="container my-5">
+      <section className="container-fluid px-5 my-5">   
         <div className="row align-items-center">
           <div className="col-md-6">
             <h1 className="display-4 fw-bold">Lámparas colgantes</h1>
